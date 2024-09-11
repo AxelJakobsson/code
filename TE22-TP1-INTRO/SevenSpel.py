@@ -33,16 +33,16 @@ while money > 0:
     print(f"The dice roll is {sum}")
 
     if sum < 7 and bet == 'under':
-        print(f"You won {betMoney*2}")
+        print(f"You won {betMoney*2-betMoney} money.")
         money += (betMoney*2)
 
     elif sum == 7 and bet == 'seven':
-        print(f"You won {betMoney*3}")
+        print(f"You won {betMoney*3-betMoney} money.")
         money += (betMoney*3)
     elif sum > 7 and bet == 'over':
-        print(f"You won {betMoney*2}")
+        print(f"You won {betMoney*2-betMoney} money.")
         money += (betMoney*2)
     else:
-        print(f"You lost. {betMoney}")
+        print(f"You lost {betMoney} money.")
         
 print("Out of money")
