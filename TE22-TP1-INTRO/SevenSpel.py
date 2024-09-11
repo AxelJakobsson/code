@@ -9,9 +9,9 @@ while playerMoney > 0:
                 print(f"You have {playerMoney} money left.")
 
                 try:
-                    betMoney = int(input("How much do you want to bet? "))
+                    betMoney = int(input("\nHow much money do you want to bet? "))
                 except: # Retry if bet isnt a valid data type (int)
-                    print("Invalid data type")
+                    print("\nInvalid data type")
                     
                 else: # Check if the bet is a valid amount of money
                     if betMoney > 0 and betMoney <= playerMoney:
@@ -30,21 +30,21 @@ while playerMoney > 0:
 
     sum = dice1+dice2 # Add the two dices together
 
-    print(f"The dice roll is {sum}")
+    print(f"\nThe dice roll is {sum}")
 
     # Check for win condition
     if sum < 7 and bet == 'under':
-        print(f"You won {betMoney*2-betMoney} money.")
+        print(f"You won {betMoney} money.")
         playerMoney += (betMoney*2)
 
     elif sum == 7 and bet == 'seven':
-        print(f"You won {betMoney*3-betMoney} money.")
+        print(f"You won {betMoney*2} money.")
         playerMoney += (betMoney*3)
     elif sum > 7 and bet == 'over':
-        print(f"You won {betMoney*2-betMoney} money.")
+        print(f"You won {betMoney} money.")
         playerMoney += (betMoney*2)
     else:
         print(f"You lost {betMoney} money.")
         
 # if player has less than 0 money      
-print("Out of money, you lose")
+print("\nOut of money, you lose")
