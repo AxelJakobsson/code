@@ -45,4 +45,4 @@ while money > 0:
     else:
         print(f"You lost {betMoney} money.")
         
-print("Out of money")
+print("Out of money, you lose")
