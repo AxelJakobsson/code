@@ -38,16 +38,30 @@ while True: # Someone getting on the elevator
         newDirection = 'DOWN'
         
     print(f"A person on floor {onFloor} wants to go to floor {goToFloor}. Their direction = {newDirection}, your direction = {direction}")
-
+    break
     
-    if (onFloor >= currentFloor and newDirection == direction): # 
-        targetFloors.append(onFloor)
-        break
-    print(max(targetFloors))
+if (onFloor >= currentFloor and newDirection == direction): # 
+    pickUpFloor.append(onFloor)
+    targetFloors.append(goToFloor)
+    print(f"pickup floors + {pickUpFloor}")
+print(max(targetFloors))
     
     
-    for i in range (max(targetFloors)):
-        print(f"The elevator is currently on floor {currentFloor}")
-        currentFloor += 1
-        if (currentFloor == min(targetFloors)):
-            print(f"Elevator reached floor {currentFloor}. Letting out passenger")
+for i in range (max(targetFloors)):
+    print(f"The elevator is currently on floor {currentFloor}")
+    
+    # print(targetFloors)
+    print(f"pickup floors + {pickUpFloor}")
+    if (currentFloor == min(targetFloors)):
+        print(f"Elevator reached floor {currentFloor}. Staying to let passengers out.")
+        targetFloors.remove(currentFloor)
+        
+    elif (currentFloor != min(targetFloors) and currentFloor != min(pickUpFloor)): 
+        print("empty floor")
+    elif (currentFloor == min(pickUpFloor)):
+        print(f"Elevator reached floor {currentFloor}. Staying to let passengers in.")
+        pickUpFloor.remove(currentFloor)
+    
+    currentFloor += 1
+print(f"target floors + {targetFloors}")
+print(f"pickup floors + {pickUpFloor}")
