@@ -18,7 +18,7 @@ export default class Input {
             
             setTimeout(() => {
                this.keysUp.clear();
-              }, "1000");
+              }, "500");
         })
 
         // window.addEventListener("mousemove", (event) => {

@@ -29,11 +29,16 @@ export default class Player extends GameObject{
         }
 
 
-        if (this.y > 430){
-            console.log("reached floor")
+        if (this.y < 430){
+            this.y += 3 
         }
-        else {
-            this.y += 3
+
+        console.log(this.x)
+        if (this.x < 0) {
+            this.x = 0
+        }
+        if (this.x > 805) {
+            this.x = 805
         }
         
 
@@ -54,6 +59,7 @@ export default class Player extends GameObject{
             }
         }
         this.x += this.speedX
+        
     }
 
 
