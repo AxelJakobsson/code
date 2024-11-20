@@ -61,87 +61,19 @@ export default class Player extends GameObject {
       this.height += 1
     }
 
-    if (this.game.input.keys.has("r")) {
-      console.log("r")
-      if (this.width > 0 && this.height > 0) {
-        this.width -= 1
-        this.height -= 1
-      }
-      else {
-        console.log("too small")
-      }
-    }
-    if (this.game.input.keys.has("x")) {
-      console.log("X: " + this.x + "Y: " + this.y)
-    }
-
-    if (this.grounded == false) {
-      if (this.gravity < this.maxGravity) {
-        this.gravity += 0.5
-        this.timerGravity = 0
-      }
-      else {
-        this.timerGravity += deltaTime
-      }
-    }
-    else {
-      this.gravity = 1
+        if (this.game.input.keys.has("r")){
+            console.log("r")
+            if (this.width > 0 && this.height > 0){
+                this.width -= 1
+                this.height -= 1
+            }
+            else {
+                console.log("too small")
+            }
+        }
+        this.x += this.speedX
+        
     }
 
-      this.x += this.speedX
-      this.y += this.speedY
 
-
-      this.y += this.gravity
-
-      if (this.timer > this.interval) {
-        this.frameX++
-        this.timer = 0
-      } else {
-        this.timer += deltaTime
-      }
-
-      if (this.frameX >= this.maxFrames) {
-        this.frameX = 0
-      }
-
-      if (this.speedX !== 0) {
-        this.frameY = 0
-        this.maxFrames = 24
-      } else {
-        this.frameY = 0
-        this.maxFrames = 2
-      }
-
-      if (this.speedY < 0) {
-        this.frameY = 0
-        this.maxFrames = 24
-      }
-
-      if (this.gravity == this.maxGravity) {
-        this.frameY = 0
-        this.maxFrames = 24
-      }
-    }
-
-    draw(ctx) {
-      if (this.flip) {
-        ctx.save()
-        ctx.scale(-1, 1)
-      }
-      ctx.drawImage(
-        this.image,
-        this.frameX * this.frameWidth,
-        this.frameY * this.frameHeight,
-        this.frameWidth,
-        this.frameHeight,
-        this.flip ? this.x * -1 - this.width : this.x,
-        this.y,
-        this.width,
-        this.height,
-      )
-      if (this.flip) {
-        ctx.restore()
-      }
-    }
-  }
+}
