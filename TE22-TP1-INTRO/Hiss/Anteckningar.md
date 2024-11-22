@@ -11,3 +11,6 @@ Ifall det finns någon våning innan valuet som hissen vill till så kollar den 
 
 
 När man är i hissen och trycker på en våning så får hissen en ny targetFloor. Ifall targetFloor > currentFloor så blir direction == UP annars direction == DOWN. Ifall man åker förbi en våning mellan currentFloor och targetFloor och som ska i samma direction så lägger man till dem i en array. Arrayen sparar vilka våningar som hissen ska stanna vid. 
+
+
+Vill byta till ett klass system som liknar det vi använder oss av på webbutvecklingen
