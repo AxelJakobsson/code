@@ -1,16 +1,15 @@
-import Game from "./Game.js"
+import Game from './Game.js'
 
-const setup = (canvas) => {
+export function setup(canvas) {
   const ctx = canvas.getContext('2d') // Skapar en 2d-kontext för att rita på canvas
   // 16:9 aspect ratio
-  canvas.width = 854 // sätt bredden på canvas
+  canvas.width = 854 / 2 // sätt bredden på canvas
   canvas.height = 480 // sätt höjden på canvas
 
   const game = new Game(canvas.width, canvas.height)
   let lastTime = 0
 
-
-const animate = (timeStamp) => {
+  const animate = (timeStamp) => {
     const deltaTime = timeStamp - lastTime
     lastTime = timeStamp
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -21,5 +20,3 @@ const animate = (timeStamp) => {
 
   animate(0)
 }
-
-export { setup }

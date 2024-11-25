@@ -14,6 +14,7 @@ export default class GameObject {
 
 
     draw(ctx) {
+        this.image
         ctx.fillStyle = this.color
         ctx.fillRect(this.x, this.y, this.width, this.height)
     }
