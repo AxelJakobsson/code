@@ -1,0 +1,16 @@
+body {
+    background-color: coral;
+}
+
+.middle-block {
+    margin: auto auto;
+    width: 1000px;
+    height: 50px;
+    background-color: blue;
+    border-radius: 40%;
+    
+  /* Use mask-image to create the desired gradient */
+  mask-image: linear-gradient(to right, transparent 20%, coral 50%, coral 50%, transparent 80%); /* mask-image: linear-gradient(to right, transparent 10%, coral 50%, coral 50%, transparent 90%); gör masken mindre*/ 
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
