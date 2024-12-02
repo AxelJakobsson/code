@@ -46,6 +46,14 @@ export default class Game { // Skapar klassen
           this.enemies.push(
             new Enemy(this, Math.random() * (this.width - 32), 0, 32, 32),
           )
+
+        this.enemies.forEach((enemy) => {
+            enemy.update(deltaTime)
+            if (this.checkCollision(enemy, this.player)) {
+              this.player.takeDamage(10)
+              enemy.markedForDeletion = true
+            }
+          })
         }
 
         // this.box.update(deltaTime)
