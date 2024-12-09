@@ -1,4 +1,4 @@
-{% block content %}
+<!-- {% block content %}
 
 
 
@@ -7,4 +7,21 @@
 {%endfor%}
 
 
-{% endblock %}
+{% endblock %} -->
+
+
+
+
+<form action="/birds" method="POST">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="wingspan">Wingspan</label>
+    <input type="number" name="wingspan" id="wingspan">
+    <label for="species_id">Species</label>
+    <select name="species_id" id="species_id">
+      <option value="1">Art 1</option>
+      <option value="2">Art 2</option>
+      <option value="3">Art 3</option>
+    </select>
+    <button type="submit">Submit</button>
+  </form>

@@ -4,6 +4,7 @@ import Input from "./Input.js"
 import Player from "./Player.js"
 import Enemy from "./Enemy.js"
 import UserInterface from "./UserInterface.js"
+import Dance from "./Dance.js"
 
 export default class Game { // Skapar klassen
     constructor(width, height){ // Klassens konstruktor
@@ -12,10 +13,12 @@ export default class Game { // Skapar klassen
         this.input = new Input(this)
         this.player = new Player(427, 0, 50, 50, "Yellow", this)
         this.keys = new Set()
+        this.dance = new Dance(this)
 
         this.ui = new UserInterface(this)
         this.score = 0
         this.elapsedTime = 0
+        
 
         this.gameOver = false
         this.enemies = []
@@ -43,7 +46,8 @@ export default class Game { // Skapar klassen
       this.ui.update(deltaTime)
 
       this.player.update(deltaTime)
-      if (Math.random() < 0.06) {
+      this.dance.update(deltaTime)
+      if (Math.random() < 0.01) {
         console.log("Spawn enemy")
         this.enemies.push(
           // game, x, y, width, height, startX
@@ -51,16 +55,21 @@ export default class Game { // Skapar klassen
         )
       }
 
-      // this.box.update(deltaTime)
-      // this.box1.update(deltaTime)
-      // this.ball.update(deltaTime)
-      this.player.update(deltaTime)
-
       this.enemies.forEach((enemy) => {
           enemy.update(deltaTime)
           if (this.checkCollision(enemy, this.player)) {
             this.player.takeDamage(1)
             enemy.markedForDeletion = true
+          }
+          if (this.dance.buttonsPressed == this.dance.rhAmount) {
+            // this.enemies.forEach((enemy) => {
+            //   console.log("remove enemy")
+            //   enemy.markedForDeletion = true
+            // }) // removes all enemies
+            enemy.markedForDeletion = true
+            this.dance.buttonsPressed = 0
+            this.score += 100
+            this.dance.timeToSolve = 5000
           }
         })
         this.enemies = this.enemies.filter((e) => !e.markedForDeletion)
@@ -82,9 +91,6 @@ export default class Game { // Skapar klassen
 
     draw(ctx) {
 
-    //    this.box.draw(ctx)
-    //    this.box1.draw(ctx)
-    //    this.ball.draw(ctx)
     this.enemies.forEach((enemy) => {
         enemy.draw(ctx)
     })

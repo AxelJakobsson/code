@@ -2,6 +2,7 @@ export default class Input {
     constructor() {
         this.game = game
         this.keys = new Set()
+        this.keysUp = new Set()
         // this.keysUp = new Set()
 
 
@@ -14,11 +15,11 @@ export default class Input {
 
         window.addEventListener("keyup", (event) => {
             this.keys.delete(event.key)
-        //     this.keysUp.add(event.key)
+            this.keysUp.add(event.key)
             
-        //     setTimeout(() => {
-        //        this.keysUp.clear();
-        //       }, "500");
+            setTimeout(() => {
+               this.keysUp.clear();
+              }, "30");
         })
 
         // window.addEventListener("mousemove", (event) => {

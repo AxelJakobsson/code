@@ -1,5 +1,6 @@
 import Game from "./Game";
 import GameObject from "./GameObject";
+import Dance from "./Dance"
 
 export default class Player extends GameObject {
   constructor(x, y, width, height, color, game, speed) {

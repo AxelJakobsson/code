@@ -5,16 +5,19 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -e js,html,njk,json,css ./server.js"
+    "dev": "nodemon -e js,html,njk,json,css ./server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "```bash cd code mkdir te22-mysql-intro cd tee22-mysql-intro npm init -y touch server.js npm i express npm i nodemon -D ```",
   "dependencies": {
-    "dotenv": "^16.4.5",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.6",
     "express": "^4.21.1",
-    "mysql2": "^3.11.4",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.11.5",
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {

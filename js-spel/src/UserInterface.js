@@ -22,36 +22,19 @@ export default class UserInterface {
         }
       }
 
-      if(this.game.input.keys.has("c")){
-        this.triggerFlash()
-      }
-    // for (let i = 0; i < this.array.length; i++){
-    //     this.array[i] = 1+i
-    //     console.log(this.array[i])
-    // }
-
-    // for (let i = 0; i < 10000; i++) {
-    //     if (this.delay_time > 0){
-    //         this.delay_time -= deltaTime;
+    //   if(this.game.input.keys.has("c")){
+    //     this.triggerFlash()
+    //   }
+    // if(this.game.input.keys.has("x") && this.delay <= 0){
+    //     if (this.color_number > this.color_length){
+    //         this.color_number = 0
+    //         this.delay = 500
     //     }
     //     else {
-    //         this.array[i] = i+1;
-    //         // console.log(this.array[i])
-    //         this.delay_time = 5000
+    //         this.color_number += 1
+    //         this.delay = 500
     //     }
-
     // }
-    // console.log(this.delay)
-    if(this.game.input.keys.has("x") && this.delay <= 0){
-        if (this.color_number > this.color_length){
-            this.color_number = 0
-            this.delay = 500
-        }
-        else {
-            this.color_number += 1
-            this.delay = 500
-        }
-    }
     if (this.delay > 0) {
         this.delay -= deltaTime
       }

@@ -6,10 +6,11 @@ export default class Enemy extends GameObject {
     super(x, y, width, height, startX)
     this.game = game
     this.color = "green"
-    this.speedX = 0.5 + Math.random() * 2
+    this.speedX = 0.3
     this.markedForDeletion = false
     this.startX = 0
     this.removeTimer = 100
+    this.health = 3
   }
 
   update(deltaTime) {
