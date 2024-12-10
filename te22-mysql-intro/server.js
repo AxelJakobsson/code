@@ -24,15 +24,6 @@ app.get('/', (req, res) => {
     })
 });
 
-// app.get('/birds', async (req, res) => {
-//         // const [birds] = await pool.promise().query('SELECT * FROM birds')
-//         const [birds] = await pool.promise().query(
-//             "SELECT birds.*, species.name AS species FROM birds JOIN species on birds.species_id = species.id;"
-//         )
-      
-//         res.json(birds)
-// })
-
 app.get('/birds1/:id', async (req, res) => {
     const [bird] = await pool.promise().query(`SELECT birds.*, species.name AS species FROM birds JOIN 
         species ON birds.species_id = species.id WHERE birds.id = ?;`,
@@ -50,6 +41,14 @@ app.get('/birds', async (req, res) => {
     console.log(birds)
 });
 
+app.get('/birds/new', async (req, res) => {
+    const [birds] = await pool.promise().query(`SELECT birds.*, species.name AS species FROM birds JOIN species on birds.species_id = species.id;`)
+    res.render("birds_form.njk", {
+        birds: birds
+    })
+    console.log(birds)
+});
+
 app.get('/birds/:id', async (req, res) => {
     const [birds] = await pool.promise().query(`SELECT birds.*, species.name AS species FROM birds JOIN 
         species ON birds.species_id = species.id WHERE birds.id = ?;`,
@@ -60,27 +59,17 @@ app.get('/birds/:id', async (req, res) => {
     })
 });
 
-app.get('/form', (req, res) => {
-    res.render('species_form.njk', {
-        title: 'Test'
+app.get('/birds/:id/delete', async (req, res) => {
+    const [birdsOut] = await pool.promise().query(`SELECT birds.*, species.name AS species FROM birds JOIN species on birds.species_id = species.id;`)
+    const [birds] = await pool.promise().query(`DELETE FROM birds WHERE id = ?`,
+    [req.params.id],
+    )
+    res.render("birds_delete.njk", {
+        // birds:birds,
+        birdsOut:birdsOut
     })
 });
 
-app.get('/birds/new', async (req, res) => {
-    const [species] = await pool.promise().query('SELECT * FROM species')
-  
-    res.render('birds_form.njk', { species })
-});
-
-app.post('/species', async (req, res) => {
-    const {name, latin, wingspan_min, wingspan_max} = req.body
-    
-    const [result] = await pool.promise().query('INSERT INTO species (name, latin, wingspan_min, wingspan_max) VALUES (?, ?, ?, ?)', [name, latin, wingspan_min, wingspan_max])
-
-    res.json(result)
-
-    res.redirect('/species')
-});
 
 app.post('/birds', async (req, res) => {
     console.log(req.body)
@@ -89,7 +78,44 @@ app.post('/birds', async (req, res) => {
     const [result] = await pool.promise().query('INSERT INTO birds (name, wingspan, species_id) VALUES (?, ?, ?)', [name, wingspan, species_id])
   
     res.json(result)
-})
+});
+
+app.post('/birds/:id', async (req, res) => {
+    const [result] = await pool.promise().query(`DELETE FROM birds WHERE birds.id = ?;`,
+    [req.params.id],
+    )
+    res.json(result)
+});
+
+
+
+
+
+
+
+// app.get('/form', (req, res) => {
+//     res.render('species_form.njk', {
+//         title: 'Test'
+//     })
+// });
+
+
+
+// app.get('/species', async (req, res) => {
+//     const [species] = await pool.promise().query('SELECT * FROM species')
+
+//     res.render('species.njk', { species })
+// })
+
+// app.post('/species', async (req, res) => {
+//     const {name, latin, wingspan_min, wingspan_max} = req.body
+    
+//     const [result] = await pool.promise().query('INSERT INTO species (name, latin, wingspan_min, wingspan_max) VALUES (?, ?, ?, ?)', [name, latin, wingspan_min, wingspan_max])
+
+//     res.json(result)
+
+//     res.redirect('/species')
+// });
 
 
 app.listen(port, () => {
