@@ -51,3 +51,19 @@ Påbörja med js spelet.
 
 
 
+## Måndag 13 Januari
+
+### Vad gjorde du sist?
+* Lade till dans systemet, fortfarande inte lagt till grafik som visar knapparna så man får kolla i konsollen. 
+
+### Finns det något som hindrar dig?
+* Player sprite laddas inte in korrekt
+
+### Vad gjorde jag idag
+* Lagt till så man bara får ett input per knapp-tryck
+* Lagt till bakgrunden
+
+### Vad ska du göra nästa gång
+* Fixa player sprite
+* Lägga till start meny
+* Lägga till gameover screen

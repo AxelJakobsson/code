@@ -32,6 +32,7 @@ export default class Dance {
         }
         if (this.pressButtons[0] == "z") {
             if (this.game.input.keys.has("z") && !this.zKeyHandled){
+                this.game.input.keys.clear();
                 this.zKeyHandled = true
                 this.inputDelay = 0
                 console.log("z pressed")
@@ -39,7 +40,7 @@ export default class Dance {
                 console.log(this.pressButtons)
                 this.buttonsPressed += 1
             }
-            else if (this.game.input.keys != "z" && this.game.input.keysUp.size > 0) {
+            else if (this.game.input.keys != "z" && this.game.input.keys.size > 0) {
                 this.inputDelay = 0
                 this.timeToSolve = 5000
                 console.log("incorrect input z")
@@ -50,6 +51,7 @@ export default class Dance {
         }
         if (this.pressButtons[0] == "x") {
             if (this.game.input.keys.has("x") && !this.xKeyHandled){
+                this.game.input.keys.clear();
                 this.xKeyHandled = true
                 this.inputDelay = 0
                 console.log("x pressed")
@@ -57,7 +59,7 @@ export default class Dance {
                 console.log(this.pressButtons)
                 this.buttonsPressed += 1
             }
-            else if (this.game.input.keysUp != "x" && this.game.input.keysUp.size > 0) {
+            else if (this.game.input.keys != "x" && this.game.input.keys.size > 0) {
                 this.inputDelay = 0
                 this.timeToSolve = 5000
                 console.log("incorrect input x")
@@ -68,6 +70,7 @@ export default class Dance {
         }
         if (this.pressButtons[0] == "c") {
             if (this.game.input.keys.has("c") && !this.cKeyHandled){
+                this.game.input.keys.clear();
                 this.cKeyHandled = true
                 this.inputDelay = 0
                 console.log("c pressed")
@@ -75,10 +78,10 @@ export default class Dance {
                 console.log(this.pressButtons)
                 this.buttonsPressed += 1
             }
-            else if (this.game.input.keysUp != "c" && this.game.input.keysUp.size > 0) {
+            else if (this.game.input.keys != "c" && this.game.input.keys.size > 0) {
                 this.inputDelay = 0
                 this.timeToSolve = 5000
-                console.log("incorrect input")
+                console.log("incorrect input c")
             }
         }
         if (!this.game.input.keys.has("c")) {

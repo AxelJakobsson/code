@@ -1,4 +1,5 @@
 import Game from "./Game";
+import Background from "./Background"
 
 export default class UserInterface {
     constructor(game) {
@@ -12,6 +13,8 @@ export default class UserInterface {
       this.array.length = (2 ** 32) -1
       this.delay_time = 5000
       this.pauseGameText = ""
+      this.background = new Image();
+      this.background.src = "./src/assets/DeadMoves/DeadMoves/Background/Background_Assembled.png";
     }
   
     update(deltaTime) {

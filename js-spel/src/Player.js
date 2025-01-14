@@ -5,19 +5,22 @@ import Dance from "./Dance"
 export default class Player extends GameObject {
   constructor(x, y, width, height, color, game, speed) {
     super(x, y, width, height, color, game)
+    // super(game, 0, 300, 128, 128, "#fff", 5)
+
     this.image = new Image()
-    this.image.src = "./src/assets/DinoSprites - vita.png"
+    // this.image.src = "./src/assets/DinoSprites - vita.png"
+    this.image.src = "./src/assets/DeadMoves/DeadMoves/Sprites/Player_SpriteSheet_NoGrid.png"
     
     this.game = game
 
     this.speedX = 0
     this.speedY = 0
-    this.frameWidth = 24
-    this.frameHeight = 24
+    this.frameWidth = 800
+    this.frameHeight = 800
     this.frameX = 0
     this.flip = false
     this.frameY = 0
-    this.maxFrames = 7
+    this.maxFrames = 10
     this.fps = 20
     this.timer = 0
     this.interval = 1000 / this.fps
@@ -26,7 +29,7 @@ export default class Player extends GameObject {
 
 
     this.maxSpeedX = 0.04
-    this.health = 100
+    this.health = 1
     this.y = 450
 
     this.attackDelay = 0
@@ -120,8 +123,6 @@ export default class Player extends GameObject {
         this.iframesTimer += deltaTime
       }  
 
-     
-
     takeDamage(damage) {
       if(this.iframesTimer > 1000){
         this.health -= damage
@@ -132,7 +133,16 @@ export default class Player extends GameObject {
         console.log("game over")
         this.game.gameOver = true
       }
+      if (this.game.input.keys.has("g")) {
+        console.log("test test test")
+      }
+      if (this.game.gameOver == true && this.game.input.keys.has("f")){
+        console.log("game  not over")
+        this.game.gameOver = false
+      }
     }
+
+   
     draw(ctx) {
       if (this.flip) {
         ctx.save()

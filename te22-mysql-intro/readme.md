@@ -15,3 +15,7 @@ Redigera package.json:
 "scripts": {
     "dev": "nodemon server.js"
 }
+
+
+Tisdag 10 Decmber 
+jobbade med crud med bird databasen
