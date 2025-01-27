@@ -1,6 +1,7 @@
 import Game from "./Game";
 import GameObject from "./GameObject";
 import Dance from "./Dance"
+import playerImage from "./assets/DeadMoves/DeadMoves/Sprites/Player_SpriteSheet_NoGrid.png"
 
 export default class Player extends GameObject {
   constructor(x, y, width, height, color, game, speed) {
@@ -9,28 +10,29 @@ export default class Player extends GameObject {
 
     this.image = new Image()
     // this.image.src = "./src/assets/DinoSprites - vita.png"
-    this.image.src = "./src/assets/DeadMoves/DeadMoves/Sprites/Player_SpriteSheet_NoGrid.png"
+    this.image.src = "src/assets/Upd_SpriteSheets/Upd_SpriteSheets/Upd_Player_SpriteSheet_NoGrid.png"
     
     this.game = game
 
     this.speedX = 0
     this.speedY = 0
-    this.frameWidth = 800
-    this.frameHeight = 800
+    this.frameWidth = 340
+    this.frameHeight = 480
     this.frameX = 0
-    this.flip = false
     this.frameY = 0
-    this.maxFrames = 10
-    this.fps = 20
+    this.flip = false
+    this.maxFrames = 11
+    this.fps = 12
     this.timer = 0
     this.interval = 1000 / this.fps
 
-    this.iframesTimer  = 0
+    this.iframesTimer = 100
 
 
     this.maxSpeedX = 0.04
-    this.health = 1
-    this.y = 450
+    this.health = 3
+    this.y = 130
+    this.x = 300
 
     this.attackDelay = 0
     this.attackInterval = 100
@@ -39,6 +41,12 @@ export default class Player extends GameObject {
 
 
   update(deltaTime) {
+
+    if (this.game.gameOver == true && this.game.input.keys.has("f")){
+      console.log("game  not over")
+      this.game.gameOver = false
+    }
+
     this.inputDelay += deltaTime
     if (this.game.input.keys.has("ArrowLeft")) {
       this.speedX -= this.maxSpeedX
@@ -71,9 +79,9 @@ export default class Player extends GameObject {
       this.frameY = 0
       this.maxFrames = 9
     } else {
-      this.interval = 10000 / this.fps
+      this.interval = 1000 / this.fps
       this.frameY = 0
-      this.maxFrames = 2
+      this.maxFrames = 10
     }
 
 
@@ -109,6 +117,7 @@ export default class Player extends GameObject {
           this.timer = 0
         } else {
           this.timer += deltaTime
+          return
         }
     
         if (this.frameX >= this.maxFrames) {
@@ -124,7 +133,7 @@ export default class Player extends GameObject {
       }  
 
     takeDamage(damage) {
-      if(this.iframesTimer > 1000){
+      if(this.iframesTimer > 300){
         this.health -= damage
         this.game.ui.triggerFlash()
         this.iframesTimer = 0
@@ -133,13 +142,8 @@ export default class Player extends GameObject {
         console.log("game over")
         this.game.gameOver = true
       }
-      if (this.game.input.keys.has("g")) {
-        console.log("test test test")
-      }
-      if (this.game.gameOver == true && this.game.input.keys.has("f")){
-        console.log("game  not over")
-        this.game.gameOver = false
-      }
+
+
     }
 
    
@@ -150,7 +154,7 @@ export default class Player extends GameObject {
       }
       ctx.drawImage(
         this.image,
-        this.frameX * this.frameWidth,
+        589 + this.frameX * this.frameWidth,
         this.frameY * this.frameHeight,
         this.frameWidth,
         this.frameHeight,

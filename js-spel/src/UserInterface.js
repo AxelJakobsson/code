@@ -1,5 +1,6 @@
 import Game from "./Game";
 import Background from "./Background"
+import Dance from "./Dance"
 
 export default class UserInterface {
     constructor(game) {
@@ -15,6 +16,8 @@ export default class UserInterface {
       this.pauseGameText = ""
       this.background = new Image();
       this.background.src = "./src/assets/DeadMoves/DeadMoves/Background/Background_Assembled.png";
+
+      this.dance = new Dance()
     }
   
     update(deltaTime) {
@@ -49,20 +52,20 @@ export default class UserInterface {
         ctx.fillRect(0, 0, this.game.width, this.game.height)
       }
       ctx.fillStyle = this.color[this.color_number]
-      ctx.font = "20px Arial"
+      ctx.font = "20px Ubuntu"
       ctx.fillText(`Score: ${this.game.score}`, 20, 40)
   
-      ctx.fillStyle = "black"
-      ctx.font = "20px Arial"
+      ctx.fillStyle = "white"
+      ctx.font = "20px Ubuntu"
       ctx.fillText(`Time: ${this.game.elapsedTime.toFixed(1)}s`, 20, 70)
   
-      ctx.fillStyle = "black"
-      ctx.font = "20px Arial"
+      ctx.fillStyle = "white"
+      ctx.font = "20px Ubuntu"
       ctx.fillText(`Health: ${this.game.player.health}`, 20, 100)
 
-        ctx.fillStyle = "black"
-        ctx.font = "100px Arial"
-        ctx.fillText(this.pauseGameText, 300, 480/2)
+      ctx.fillStyle = "black"
+      ctx.font = "100px Ubuntu"
+      ctx.fillText(this.pauseGameText, 300, 480/2)
     }
   
     triggerFlash(duration) {

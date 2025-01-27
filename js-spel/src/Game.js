@@ -12,7 +12,7 @@ export default class Game { // Skapar klassen
         this.width = width
         this.height = height
         this.input = new Input(this)
-        this.player = new Player(0, 0, 400, 400, "Yellow", this)
+        this.player = new Player(0, 0, 250, 400, "Yellow", this)
         this.keys = new Set()
         this.dance = new Dance(this)
 
@@ -28,9 +28,6 @@ export default class Game { // Skapar klassen
         this.pauseGame = false
 
         console.log("Ny instans av game ", this.width)
-        // x, y, width, height, color, speed
-        this.box = new GameObject(40, 100, 200, 200, "Purple")
-        this.box1 = new GameObject(0, 0, 60, 60, "Green")
 
         this.gameObjects = [
           new GameObject(this, 0, 100, 20, 20, '#f00', 100),
@@ -67,10 +64,18 @@ export default class Game { // Skapar klassen
 
       if (Math.random() < 0.01) {
         console.log("Spawn enemy")
-        this.enemies.push(
-          // game, x, y, width, height, startX
-          new Enemy(this, Math.random() * (this.width - 32), 450, 32, 32, Math.random() * (this.width - 32)), 
-        )
+        if (Math.random() > 0.6) {
+          this.enemies.push(
+            // game, x, y, width, height, startX
+            new Enemy(this, 750, 450, 32, 32, 750),
+          )
+        }
+        if (Math.random() < 0.4) {
+          this.enemies.push(
+            // game, x, y, width, height, startX
+            new Enemy(this, 0, 450, 32, 32, 0), 
+          )
+        }
       }
 
       this.enemies.forEach((enemy) => {
@@ -108,9 +113,7 @@ export default class Game { // Skapar klassen
     
 
     draw(ctx) {
-
-
-      this.ui.draw(ctx)
+      
 
       this.background.draw(ctx)
       this.gameObjects.forEach(gameObject => {
@@ -119,11 +122,14 @@ export default class Game { // Skapar klassen
 
         this.background.backgroundLayers[0].draw(ctx)
         
+        
         this.enemies.forEach((enemy) => {
           enemy.draw(ctx)
         })
 
         this.player.draw(ctx)
+        this.ui.draw(ctx)
+        this.dance.draw(ctx)
       }
 
     // takes object a and b, checks for overlaps, returns true if collision

@@ -67,3 +67,37 @@ Påbörja med js spelet.
 * Fixa player sprite
 * Lägga till start meny
 * Lägga till gameover screen
+
+
+## Måndag 20 December
+
+### Vad gjorde du sist?
+
+### Vad ska du göra idag?
+
+### Finns det något som hindrar dig?
+
+### Hjälp med? 
+
+### Vad gjorde jag idag
+
+* Lagt till UI för dans knapparna
+* Börjat lägga till sprites, ska fixa frames
+
+## Måndag 27 December
+
+### Vad gjorde du sist?
+
+### Vad ska du göra idag?
+
+### Finns det något som hindrar dig?
+
+### Hjälp med? 
+
+### Vad gjorde jag idag
+
+* Gjort klart UI:n
+* Gjort klart sprites
+* Lagt till delay ifall man klickar fel dans knapp
+
+Nästa gång ska jag lägga till game over skärm

@@ -1,4 +1,5 @@
 import Game from "./Game";
+import UserInterface from "./UserInterface";
 
 export default class Dance {
     constructor(game) {
@@ -19,7 +20,7 @@ export default class Dance {
     update(deltaTime) {
         this.timeToSolve += deltaTime
         this.buttonPressDelay += deltaTime
-        this.inputDelay += deltaTime
+        this.inputDelay -= deltaTime
 
         if (this.timeToSolve >= 5000) {
             this.pressButtons.length=0
@@ -31,7 +32,7 @@ export default class Dance {
             }
         }
         if (this.pressButtons[0] == "z") {
-            if (this.game.input.keys.has("z") && !this.zKeyHandled){
+            if (this.game.input.keys.has("z") && !this.zKeyHandled && this.inputDelay < 0 ){
                 this.game.input.keys.clear();
                 this.zKeyHandled = true
                 this.inputDelay = 0
@@ -40,9 +41,9 @@ export default class Dance {
                 console.log(this.pressButtons)
                 this.buttonsPressed += 1
             }
-            else if (this.game.input.keys != "z" && this.game.input.keys.size > 0) {
-                this.inputDelay = 0
-                this.timeToSolve = 5000
+            else if (this.game.input.keys != "z" && this.game.input.keys.size < 0) {
+                this.inputDelay = 2000
+                this.timeToSolve = 4999
                 console.log("incorrect input z")
             }
         }
@@ -50,7 +51,7 @@ export default class Dance {
             this.zKeyHandled = false;
         }
         if (this.pressButtons[0] == "x") {
-            if (this.game.input.keys.has("x") && !this.xKeyHandled){
+            if (this.game.input.keys.has("x") && !this.xKeyHandled && this.inputDelay < 0){
                 this.game.input.keys.clear();
                 this.xKeyHandled = true
                 this.inputDelay = 0
@@ -60,8 +61,8 @@ export default class Dance {
                 this.buttonsPressed += 1
             }
             else if (this.game.input.keys != "x" && this.game.input.keys.size > 0) {
-                this.inputDelay = 0
-                this.timeToSolve = 5000
+                this.inputDelay = 2000
+                this.timeToSolve = 4999
                 console.log("incorrect input x")
             }
         }
@@ -69,7 +70,7 @@ export default class Dance {
             this.xKeyHandled = false;
         }
         if (this.pressButtons[0] == "c") {
-            if (this.game.input.keys.has("c") && !this.cKeyHandled){
+            if (this.game.input.keys.has("c") && !this.cKeyHandled && this.inputDelay < 0){
                 this.game.input.keys.clear();
                 this.cKeyHandled = true
                 this.inputDelay = 0
@@ -79,13 +80,19 @@ export default class Dance {
                 this.buttonsPressed += 1
             }
             else if (this.game.input.keys != "c" && this.game.input.keys.size > 0) {
-                this.inputDelay = 0
-                this.timeToSolve = 5000
+                this.inputDelay = 2000
+                this.timeToSolve = 4999
                 console.log("incorrect input c")
             }
         }
         if (!this.game.input.keys.has("c")) {
             this.cKeyHandled = false;
         }
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = "white"
+        ctx.font = "80px Ubuntu"
+        ctx.fillText(this.pressButtons, 350, 100)
     }
 }
