@@ -1,41 +1,57 @@
 body {
-    font-family: sans-serif;
-    font-size: 1.2rem;
-  }
-  
-  main {
-    width: min(100% - 3rem, var(--container-max, 60ch));
-    margin-inline: auto;
-  }
-  
-  .tweets {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-  }
-  
-  .tweet {
-    margin-bottom: 1rem;
-  }
-  
-  .tweet header {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .tweet footer {
-    padding-top: 1rem;
-  }
-  
-  .tweet footer ul {
-    display: flex;
-    gap: 1rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    justify-content: space-between;
-    align-items: center;
-  }
+  font-family: sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1;
+}
+
+.container {
+  width: min(100% - 3rem, var(--container-max, 60ch));
+  margin-inline: auto;
+}
+
+.region {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, 1em);
+}
+
+.tweets,
+.tweets ul {
+  padding: 0;
+  list-style: none;
+}
+
+.tweet {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.tweet header {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+
+.tweet h2 {
+  margin: 0;
+}
+
+.tweet footer {
+  padding-top: 1rem;
+}
+
+.tweet footer ul {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}

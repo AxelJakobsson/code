@@ -1,0 +1,11 @@
+{% extends "layout.njk" %}
+{% block content %}
+
+{% for account in accounts %}
+<ul>
+        {{account.id}} - {{account.name}}
+</ul>
+
+{% endfor %}
+
+{% endblock %}
