@@ -1,7 +1,7 @@
-import Game from "./Game";
-import GameObject from "./GameObject";
-import Dance from "./Dance"
-import playerImage from "./assets/DeadMoves/DeadMoves/Sprites/Player_SpriteSheet_NoGrid.png"
+import Game from "./Game.js";
+import GameObject from "./GameObject.js";
+import Dance from "./Dance.js"
+// import playerImage from "./assets/DeadMoves/DeadMoves/Sprites/Player_SpriteSheet_NoGrid.png"
 
 export default class Player extends GameObject {
   constructor(x, y, width, height, color, game, speed) {
@@ -10,8 +10,8 @@ export default class Player extends GameObject {
 
     this.image = new Image()
     // this.image.src = "./src/assets/DinoSprites - vita.png"
-    this.image.src = "src/assets/Upd_SpriteSheets/Upd_SpriteSheets/Upd_Player_SpriteSheet_NoGrid.png"
-    
+    this.image.src = "./src/assets/Upd_SpriteSheets/Upd_SpriteSheets/Upd_Player_SpriteSheet_NoGrid.png"
+
     this.game = game
 
     this.speedX = 0

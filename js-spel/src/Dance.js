@@ -1,5 +1,5 @@
-import Game from "./Game";
-import UserInterface from "./UserInterface";
+import Game from "./Game.js";
+import UserInterface from "./UserInterface.js";
 
 export default class Dance {
     constructor(game) {

@@ -1,4 +1,4 @@
-// import Ball from "./Ball.js"
+// import Ball from "./Ball"
 import GameObject from "./GameObject.js"
 import Input from "./Input.js"
 import Player from "./Player.js"

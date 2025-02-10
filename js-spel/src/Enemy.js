@@ -1,12 +1,12 @@
-import GameObject from "./GameObject"
-import Player from "./Player"
+import GameObject from "./GameObject.js"
+import Player from "./Player.js"
 
 export default class Enemy extends GameObject {
   constructor(game, x, y, width, height, startX) {
     super(x, y, width, height, startX)
     this.game = game
     this.image = new Image()
-    this.image.src = "src/assets/Upd_SpriteSheets/Upd_SpriteSheets/Upd_Nisse_SpriteSheet_NoGrid.png"
+    this.image.src = "./src/assets/Upd_SpriteSheets/Upd_SpriteSheets/Upd_Nisse_SpriteSheet_NoGrid.png"
     this.color = "green"
     this.speedX = 3
     this.markedForDeletion = false
@@ -29,8 +29,6 @@ export default class Enemy extends GameObject {
   }
 
   update(deltaTime) {
-   // this.x += this.speedX
-
    if (this.timer > this.interval) {
     this.frameX++
     this.timer = 0

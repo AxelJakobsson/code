@@ -1,6 +1,6 @@
-import Game from "./Game";
-import Background from "./Background"
-import Dance from "./Dance"
+import Game from "./Game.js";
+import Background from "./Background.js"
+import Dance from "./Dance.js"
 
 export default class UserInterface {
     constructor(game) {
