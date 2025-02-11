@@ -25,19 +25,22 @@ router.get("/create", (req, res) => {
 // Post the new tweet to the database with the message and author_id connected. 
 router.post("/create", async (req, res) => {
     const { message, author_id } = req.body
-    const [accounts] = await pool.promise().query(`SELECT user.*
-        FROM user`)
-    if (author_id ==  ""){
-        res.render("failed.njk")
+    const [accounts] = await pool.promise().query(`SELECT id FROM user WHERE id = ?`, [author_id]);
+
+    if (accounts.length === 0) {
+        return res.render("failed.njk");
     }
-    else if (author_id in accounts === false) {
-        const [results] = await pool.promise().query("INSERT INTO tweet (message, author_id) VALUES (?,?)", [message, author_id])
-        res.redirect("/")
-    }
-    else {
-        res.render("failed.njk")
-    }
+    await pool.promise().query("INSERT INTO tweet (message, author_id) VALUES (?, ?)", [message, author_id]);
+    res.redirect("/")
 })
+
+router.post("/createNoID", async (req, res) => {
+    const { message } = req.body
+    const author_id = 6
+    await pool.promise().query("INSERT INTO tweet (message, author_id) VALUES (?, ?)", [message, author_id]);
+    res.redirect("/")
+})
+
 
 // Router to the create account page
 router.get("/create/account", async (req, res) => { 

@@ -1,9 +1,16 @@
 {% extends "layout.njk" %}
-
+<!DOCTYPE html>
+<html>
+<head>
+<title>Font Awesome Icons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 {% block content %}
     <h1>Home</h1>
     <p>Welcome to the home page</p>
     <p>{{message}}</p>
+    {% include "components/tweet-form.njk" %}
     <ul>
         {% for tweet in tweets %}
             <li class="tweet">
@@ -15,13 +22,50 @@
                 <p>{{tweet.message}}</p>
                 <footer>
                     <ul>
+                        <li> id = {{ tweet.id }}</li>
                         <li>Shared</li>
                         <li>Reply</li>
                         <li>Favorite</li>
+                        <!-- <form action="/tweets/{{ tweet.id }}/delete" method="post">
+                            <button type="submit"> Submit</button>
+                        </form> -->
+
+                        <li><form action="/tweets/delete" method="post">
+                            <input type="hidden" name="id" value="{{ tweet.id }}">
+                            <button type="submit">Delete</button>
+                        </form></li>
                     </ul>
                 </footer>
             </article>
             </li>
             {% endfor %}
     </ul>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const timeElements = document.querySelectorAll("time[datetime]");
+          timeElements.forEach(timeElement => {
+            const date = new Date(timeElement.getAttribute("datetime"));
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            const diffInMinutes = Math.floor(diffInSeconds / 60);
+            const diffInHours = Math.floor(diffInMinutes / 60);
+            const diffInDays = Math.floor(diffInHours / 24);
+      
+            let displayText;
+            if (diffInDays > 0) {
+              displayText = `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
+            } else if (diffInHours > 0) {
+              displayText = `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+            } else if (diffInMinutes > 0) {
+              displayText = `${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''} ago`;
+            } else {
+              displayText = `${diffInSeconds} second${diffInSeconds > 1 ? 's' : ''} ago`;
+            }
+      
+            timeElement.textContent = displayText;
+          });
+        });
+      </script>
 {% endblock %}
+</body>
