@@ -6,6 +6,8 @@ import tweetsRouter from "./routes/tweets.js"
 import pool from './db.js'
 import bodyParser from "body-parser"
 import morgan from "morgan"
+import { body, matchedData, validationResult } from "express-validator"
+
 
 const app = express()
 const port = 3000
@@ -22,31 +24,37 @@ app.use("/", indexRouter)
 app.use("/tweets", tweetsRouter)
 
 
-app.get('/tweet/:id/delete', async (req, res) => {
-    const [tweetID] = await pool.promise().query(`SELECT id FROM tweet WHERE id = ?`, [req.params.id]);
-    if(tweetID.length === 0) { // Make sure the tweet id is valid
-        return res.render("failed.njk")
+app.get('/tweets/:id/edit', async (req, res) => {
+    const id = req.params.id;
+    if (!Number.isInteger(Number(id))) {
+        return res.status(400).send("Invalid ID")
     }
-
-    const [tweetsOut] = await pool.promise().query(`DELETE FROM tweet WHERE id = ?;`,
-    [req.params.id],
-    )
-    res.render("tweets_delete.njk", {
-        tweetsOut:tweetsOut,
-    })
-});
-
-
-app.get("/tweets", async (req, res) => {
-    const [tweets] = await pool.promise().query(`SELECT tweet.*, user.name 
-        FROM tweet 
-        JOIN user ON tweet.author_id = user.id;`)
-    res.render("index.njk", {
-        title: "Kvitter", 
-        message: "Bästa hemsidan",
-        tweets: tweets,
-    })
+    const [rows] = await pool.promise().query('SELECT * FROM tweet WHERE id = ?', [id])
+    if (rows.length === 0) {
+        return res.status(404).send("Tweet not found")
+    }
+    res.render('edit.njk', { tweet:  rows[0] })
 })
+
+
+app.post("/tweets/edit",
+    body("id").isInt(),
+    
+    body("message").isLength({ min: 1, max:130 }),
+    async (req, res) => {
+    const errors = validationResult(req)
+
+    const { id, message } = matchedData(req)
+    console.log(message)
+
+    if (!errors.isEmpty()) {
+        return res.status(400).send("Invalid input")
+    }
+    await pool.promise().query("UPDATE tweet SET message = ? WHERE id = ?", [message, id])
+    res.redirect("/")
+})
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

@@ -4,9 +4,10 @@
 <head>
 <title>Font Awesome Icons</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
-<body>
 {% block content %}
+<body>
     <h1>Home</h1>
     <p>Welcome to the home page</p>
     <p>{{message}}</p>
@@ -17,29 +18,34 @@
                 <article>
                 <header>
                     <h2>{{ tweet.name }}</h2>
-                    <time datetime="{{ tweet.updated_at }}">{{tweet.updated_at}}</time>
+                    <time datetime="{{ tweet.created_at }}">Created at: {{ tweet.created_at }}</time>
+                    <time datetime="{{ tweet.updated_at }}">Updated at: {{tweet.updated_at}}</time>
                 </header>
                 <p>{{tweet.message}}</p>
                 <footer>
                     <ul>
                         <li> id = {{ tweet.id }}</li>
-                        <li>Shared</li>
-                        <li>Reply</li>
-                        <li>Favorite</li>
-                        <!-- <form action="/tweets/{{ tweet.id }}/delete" method="post">
-                            <button type="submit"> Submit</button>
-                        </form> -->
-
+                        <li>
+                            <button class="fa-solid fa-share-nodes"></button>
+                        </li>
+                        <li>
+                            <button class="fa-solid fa-reply"></button>
+                        </li>
+                        <li>
+                            <button class="fa-solid fa-heart"></button>
+                        </li>
                         <li><form action="/tweets/delete" method="post">
                             <input type="hidden" name="id" value="{{ tweet.id }}">
-                            <button type="submit">Delete</button>
+                            <button type="submit" class="fa-solid fa-trash"></button>
                         </form></li>
+                        <li><a href="/tweets/{{ tweet.id }}/edit">Edit</a></li>
                     </ul>
                 </footer>
             </article>
             </li>
             {% endfor %}
     </ul>
+</body>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -68,4 +74,3 @@
         });
       </script>
 {% endblock %}
-</body>

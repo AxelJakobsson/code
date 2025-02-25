@@ -6,4 +6,4 @@ http://localhost:3000/accounts - List of accounts
 
 http://localhost:3000 - List of tweets, homepage
 
-http://localhost:3000/tweet/id/delete - Delete a tweet based on its id
+http://localhost:3000/tweets/id/delete - Delete a tweet based on its id
